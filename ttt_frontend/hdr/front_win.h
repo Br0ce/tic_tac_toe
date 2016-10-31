@@ -23,8 +23,11 @@
 #ifndef FRONT_WIN_H
 #define FRONT_WIN_H
 
+#include <vector>
+
 #include <QtWidgets>
 
+#include "field.h"
 
 class Front_win : public QWidget
 {
@@ -35,11 +38,17 @@ public:
 
   explicit Front_win(QWidget* parent = Q_NULLPTR);
 
+public slots:
+
+  void field_pressed(const int);
+
 private:
 
   void init();
+  void make_pitch();
 
   QGridLayout* grid_;
+  std::vector<Field*> fields_;
 
 };
 

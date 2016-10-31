@@ -27,6 +27,7 @@ Front_win::Front_win(QWidget* parent) :
   grid_(new QGridLayout(this))
 {
   init();
+  make_pitch();
 }
 
 void Front_win::init()
@@ -35,3 +36,27 @@ void Front_win::init()
   grid_->setSpacing(2);
   grid_->setSizeConstraint(QLayout::SetFixedSize);
 }
+
+void Front_win::make_pitch()
+{
+  auto id = 0;
+  for(auto i = 0; i < 3; ++i)
+  {
+    for(auto j = 0; j < 3; ++j)
+    {
+      auto f = new Field(id, this);
+      grid_->addWidget(f, i, j);
+
+      connect(f, SIGNAL(field_pressed_signal(const int)),
+              this, SLOT(field_pressed(const int)));
+      fields_.push_back(f);
+      ++id;
+    }
+  }
+}
+
+void Front_win::field_pressed(const int)
+{
+  //TODO
+}
+
