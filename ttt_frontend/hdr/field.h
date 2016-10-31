@@ -42,7 +42,7 @@ public:
   void set_state(State s)
   { state_ = s; }
 
-  State state() const
+  State get_state() const
   { return state_; }
 
   void set_cross();

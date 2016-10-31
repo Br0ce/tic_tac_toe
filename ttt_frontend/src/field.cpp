@@ -50,7 +50,7 @@ void Field::mousePressEvent(QMouseEvent* e)
 {
   QTextEdit::mousePressEvent(e);
 
-  if(state() == State::free)
+  if(get_state() == State::free)
   {
     set_cross();
     emit field_pressed_signal(id_);
