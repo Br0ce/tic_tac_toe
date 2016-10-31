@@ -12,6 +12,7 @@ CONFIG += c++11
 CONFIG += debug
 
 INCLUDEPATH += ../hdr/
+INCLUDEPATH += ../../hdr/
 
 DESTDIR=bin #Target file directory
 OBJECTS_DIR=gen_bin #Intermediate object files directory
