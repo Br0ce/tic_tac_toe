@@ -1,4 +1,4 @@
-/** @file session_handler.cpp
+/** @file session_handler.h
  *
  * Copyright (C) 2016  Niklas Beck, beck@informatik.uni-bonn.de
  *
