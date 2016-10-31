@@ -23,4 +23,6 @@
 
 using Index = int;
 
+enum class State { free, cross, circle };
+
 #endif // DEFINES_H
