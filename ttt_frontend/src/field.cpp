@@ -43,5 +43,5 @@ void Field::mousePressEvent(QMouseEvent* e)
 {
   QTextEdit::mousePressEvent(e);
 
-  emit field_pressed(id_);
+  emit field_pressed_signal(id_);
 }

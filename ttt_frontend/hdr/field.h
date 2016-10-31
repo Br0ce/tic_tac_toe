@@ -40,7 +40,7 @@ public:
 
 signals:
 
-  void field_pressed(const int);
+  void field_pressed_signal(const int);
 
 protected:
 
