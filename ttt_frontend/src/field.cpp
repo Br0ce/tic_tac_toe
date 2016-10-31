@@ -53,7 +53,7 @@ void Field::mousePressEvent(QMouseEvent* e)
   if(get_state() == State::free)
   {
     set_cross();
-    emit field_pressed_signal(id_);
+    emit field_pressed_signal();
   }
 }
 

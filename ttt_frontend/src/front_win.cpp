@@ -47,15 +47,15 @@ void Front_win::make_pitch()
       auto f = new Field(id, this);
       grid_->addWidget(f, i, j);
 
-      connect(f, SIGNAL(field_pressed_signal(const int)),
-              this, SLOT(field_pressed(const int)));
+      connect(f, SIGNAL(field_pressed_signal()),
+              this, SLOT(field_pressed()));
       fields_.push_back(f);
       ++id;
     }
   }
 }
 
-void Front_win::field_pressed(const int)
+void Front_win::field_pressed()
 {
   user_move_signal(get_pitch_status());
 }
