@@ -24,9 +24,16 @@
 
 Field::Field(const Index id, QWidget* parent) :
   QTextEdit(parent),
-  id_(id)
+  id_(id),
+  state_(State::free)
+{
+  init_gui();
+}
+
+void Field::init_gui()
 {
   setReadOnly(true);
+  setFontPointSize(100);
 }
 
 QSize Field::sizeHint() const
@@ -43,5 +50,23 @@ void Field::mousePressEvent(QMouseEvent* e)
 {
   QTextEdit::mousePressEvent(e);
 
-  emit field_pressed_signal(id_);
+  if(state() == State::free)
+  {
+    set_cross();
+    emit field_pressed_signal(id_);
+  }
+}
+
+void Field::set_cross()
+{
+  set_state(State::cross);
+  setText("X");
+  setAlignment(Qt::AlignCenter);
+}
+
+void Field::set_circle()
+{
+  set_state(State::circle);
+  setText("O");
+  setAlignment(Qt::AlignCenter);
 }

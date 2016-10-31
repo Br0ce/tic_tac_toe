@@ -32,11 +32,21 @@ class Field : public QTextEdit
 
   Q_OBJECT
 
+
 public:
 
   Field(const Index id, QWidget* parent = Q_NULLPTR);
 
   QSize sizeHint() const override;
+
+  void set_state(State s)
+  { state_ = s; }
+
+  State state() const
+  { return state_; }
+
+  void set_cross();
+  void set_circle();
 
 signals:
 
@@ -48,9 +58,10 @@ protected:
 
 private:
 
-  void init();
+  void init_gui();
 
   Index id_;
+  State state_;
 };
 
 #endif // FIELD_H
