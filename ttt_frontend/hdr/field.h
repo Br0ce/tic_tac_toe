@@ -1,4 +1,4 @@
-/** @file field.cpp
+/** @file field.h
  *
  * @brief Smallest Unit on tic tac toe pitch
  *
