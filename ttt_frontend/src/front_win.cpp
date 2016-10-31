@@ -84,3 +84,8 @@ QByteArray Front_win::get_pitch_status() const
   }
   return a;
 }
+
+void Front_win::ai_move(int id)
+{
+  fields_.at(id)->set_circle();
+}

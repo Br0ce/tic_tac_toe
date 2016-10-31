@@ -46,6 +46,7 @@ signals:
 public slots:
 
   void field_pressed(const int);
+  void ai_move(int id);
 
 private:
 
