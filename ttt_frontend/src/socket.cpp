@@ -48,7 +48,13 @@ void Socket::disconnected()
 
 void Socket::reading()
 {
-  info("reading");
+  info("reading ...");
+
+  //TODO check message
+  auto tmp = socket_->readAll().toInt();
+  ai_move_signal(tmp);
+
+  info("received ai move");
 }
 
 void Socket::user_move(const QByteArray a)

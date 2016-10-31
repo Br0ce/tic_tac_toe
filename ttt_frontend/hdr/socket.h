@@ -39,6 +39,10 @@ public:
 
   explicit Socket(QObject* parent = Q_NULLPTR);
 
+signals:
+
+  void ai_move_signal(int);
+
 public slots:
 
   void connected();
