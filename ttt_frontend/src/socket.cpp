@@ -32,7 +32,7 @@ Socket::Socket(QObject* parent) :
   if(!socket_->waitForConnected(3000))
   {
     info("ERROR: ");
-    std::cout << socket_->errorString().toStdString();
+    std::cout << socket_->errorString().toStdString() << "\n";
   }
 }
 
