@@ -1,4 +1,4 @@
-/** @file socket.h
+/** @file socket.cpp
  *
  * @brief Class to establish communication to backend
  *
