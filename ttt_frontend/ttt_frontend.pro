@@ -20,6 +20,8 @@ MOC_DIR=gen_bin #Intermediate moc files directory
 
 # Input
 HEADERS += hdr/front_win.h \
+           hdr/field.h
 
 SOURCES += src/main.cpp \
-           src/front_win.cpp
+           src/front_win.cpp \
+           src/field.cpp
