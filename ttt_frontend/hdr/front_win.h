@@ -28,6 +28,7 @@
 #include <QtWidgets>
 
 #include "field.h"
+#include "defines.h"
 
 class Front_win : public QWidget
 {
@@ -38,6 +39,10 @@ public:
 
   explicit Front_win(QWidget* parent = Q_NULLPTR);
 
+signals:
+
+  void user_move_signal(const QByteArray a);
+
 public slots:
 
   void field_pressed(const int);
@@ -46,6 +51,7 @@ private:
 
   void init();
   void make_pitch();
+  QByteArray get_pitch_status() const;
 
   QGridLayout* grid_;
   std::vector<Field*> fields_;

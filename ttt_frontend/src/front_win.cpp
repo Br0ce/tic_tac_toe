@@ -57,6 +57,30 @@ void Front_win::make_pitch()
 
 void Front_win::field_pressed(const int)
 {
-  //TODO
+  user_move_signal(get_pitch_status());
 }
 
+QByteArray Front_win::get_pitch_status() const
+{
+  QByteArray a;
+  char c;
+
+  for(const auto& f : fields_)
+  {
+    switch(f->get_state())
+    {
+    case State::free:
+      c = '-';
+      break;
+    case State::cross:
+      c = 'x';
+      break;
+    case State::circle:
+      c = 'o';
+      break;
+    }
+
+    a.append(c);
+  }
+  return a;
+}
