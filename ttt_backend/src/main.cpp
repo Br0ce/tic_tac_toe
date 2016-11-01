@@ -1,13 +1,12 @@
 #include <QApplication>
-#include <QMainWindow>
 
+#include "../hdr/server.h"
 
 int main(int argc, char** argv)
 {
   QApplication app(argc, argv);
 
-  QMainWindow w;
-  w.show();
+  Server s;
 
   return app.exec();
 }
