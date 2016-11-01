@@ -44,7 +44,7 @@ void Engine::incoming_inquiry(QByteArray a)
   }
   catch(std::exception& e)
   {
-
+    info("ERROR: inquiry incorrect");
   }
 }
 
@@ -92,7 +92,7 @@ Index Engine::best_move()
 
 std::vector<Index> Engine::actions()
 {
-  std::vector<Index> tmp(8);
+  std::vector<Index> tmp(9);
   for(Index i = 0; i < Pitch_size; ++i)
     tmp.at(i) = i;
 
