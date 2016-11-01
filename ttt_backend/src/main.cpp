@@ -1,12 +1,12 @@
 #include <QApplication>
 
-#include "../hdr/server.h"
+#include "../hdr/dispatcher.h"
 
 int main(int argc, char** argv)
 {
   QApplication app(argc, argv);
 
-  Server s;
+  Dispatcher d;
 
   return app.exec();
 }
