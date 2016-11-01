@@ -52,7 +52,7 @@ void Socket::reading()
 
   //TODO check message
   auto tmp = socket_->readAll().toInt();
-  ai_move_signal(tmp);
+  emit ai_move_signal(tmp);
 
   info("received ai move");
 }
