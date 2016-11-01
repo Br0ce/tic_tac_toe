@@ -46,6 +46,7 @@ signals:
 public slots:
 
   void connection();
+  void next_move(QByteArray a);
 
 private:
 

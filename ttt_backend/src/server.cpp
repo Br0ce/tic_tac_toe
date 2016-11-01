@@ -53,3 +53,11 @@ void Server::connection()
     info("\nwaiting for next inquiry\n");
   }
 }
+
+void Server::next_move(QByteArray a)
+{
+  info("sending next move");
+
+  session_->write(a);
+  session_->flush();
+}
