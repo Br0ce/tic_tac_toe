@@ -45,8 +45,8 @@ signals:
 
 public slots:
 
-  void connected();
-  void disconnected();
+  void socket_connected();
+  void socket_disconnected();
   void reading();
   void user_move(const QByteArray a);
 

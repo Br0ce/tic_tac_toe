@@ -26,6 +26,13 @@ Socket::Socket(QObject* parent) :
   QObject(parent),
   socket_(new QTcpSocket(this))
 {
+  connect(socket_, SIGNAL(connected()),
+          this, SLOT(socket_connected()));
+  connect(socket_, SIGNAL(socket_disconnected()),
+          this, SLOT(disconnected()));
+  connect(socket_, SIGNAL(readyRead()),
+          this, SLOT(reading()));
+
   info("connecting ...");
 
   socket_->connectToHost("127.0.0.1", 12345);
@@ -36,12 +43,12 @@ Socket::Socket(QObject* parent) :
   }
 }
 
-void Socket::connected()
+void Socket::socket_connected()
 {
   info("connected");
 }
 
-void Socket::disconnected()
+void Socket::socket_disconnected()
 {
   info("disconnected");
 }
