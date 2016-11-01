@@ -51,7 +51,7 @@ public:
 private:
 
   bool is_index(Index id) const
-  { return ((id > 0) && (id < Pitch_size)); }
+  { return ((id >= 0) && (id < Pitch_size)); }
 
   bool is_pitch(const std::string& s) const;
   void init_win_configs();
