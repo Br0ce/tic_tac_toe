@@ -48,5 +48,8 @@ void Server::connection()
   {
     info("recieved inquiry");
 
+    emit to_engine_signal(session_->readAll());
+
+    info("\nwaiting for next inquiry\n");
   }
 }

@@ -39,6 +39,10 @@ public:
 
   explicit Server(QObject* parent = Q_NULLPTR);
 
+signals:
+
+  void to_engine_signal(QByteArray a);
+
 public slots:
 
   void connection();
