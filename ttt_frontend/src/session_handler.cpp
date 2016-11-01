@@ -27,4 +27,7 @@ Session_handler::Session_handler(Front_win* gui, QObject* parent) :
 {
   connect(gui_, SIGNAL(user_move_signal(const QByteArray)),
           socket_, SLOT(user_move(const QByteArray)));
+
+  connect(socket_, SIGNAL(ai_move_signal(int)),
+          gui_, SLOT(ai_move(int)));
 }
