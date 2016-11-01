@@ -25,8 +25,11 @@
 #define PITCH_H
 
 #include <string>
+#include <vector>
 #include <stdexcept>
+#include <algorithm>
 
+#include "defines.h"
 
 class Pitch
 {
@@ -34,11 +37,27 @@ public:
 
   Pitch(const char* c = "---------");
 
+  void set_pitch(const char* c);
+  bool is_free(Index id) const;
+  bool is_win(const Player& p) const;
+  bool is_draw() const;
+  int get_depth() const;
+  char at(Index id) const
+  { return state_.at(id); }
+  void move(Index id, const Player& p);
+  void un_move(Index id)
+  { state_.at(id) = '-'; }
+
 private:
 
+  bool is_index(Index id) const
+  { return ((id > 0) && (id < Pitch_size)); }
+
   bool is_pitch(const std::string& s) const;
+  void init_win_configs();
 
   std::string state_;
+  std::vector<std::vector<Index>> win_configs_;
 };
 
 #endif // PITCH_H
