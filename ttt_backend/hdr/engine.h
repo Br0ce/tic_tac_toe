@@ -27,6 +27,7 @@
 #include <vector>
 
 #include <QObject>
+#include <QDebug>
 
 #include "../hdr/pitch.h"
 #include "../hdr/action.h"

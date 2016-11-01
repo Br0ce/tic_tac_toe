@@ -51,37 +51,46 @@ void Engine::incoming_inquiry(QByteArray a)
 Action Engine::compute_next_move(const Player& p)
 {
   if(pitch_.is_win(Player::ai))
-    return Action(get_value(Player::ai), 0);
+    return Action(0, get_value(Player::ai));
 
   if(pitch_.is_win(Player::user))
-    return Action(get_value(Player::user), 0);
+    return Action(0, get_value(Player::user));
 
   if(pitch_.is_draw())
     return Action(0, 0);
 
-  Action a;
-  for(const auto& id : actions())
+  Action a(0, 0);
+
+  std::vector<Action> actions;
+//   for(const auto& id : actions())
+  for(int id = 0; id < 9; ++id)
   {
     if(pitch_.is_free(id))
     {
       pitch_.move(id, p);
-
+      Action tmp;
       if(p == Player::user)
       {
-        Action tmp(compute_next_move(Player::ai));
+        tmp = (compute_next_move(Player::ai));
         tmp.set_index(id);
         a = std::min(a, tmp);
       }
       else
       {
-        Action tmp(compute_next_move(Player::user));
+        tmp = (compute_next_move(Player::user));
         tmp.set_index(id);
         a = std::max(a, tmp);
       }
+
+      actions.push_back(tmp);
       pitch_.un_move(id);
     }
   }
 
+  if(p == Player::ai)
+    a = *(std::max_element(actions.cbegin(), actions.cend()));
+  else
+    a = *(std::min_element(actions.cbegin(), actions.cend()));
   return a;
 }
 
