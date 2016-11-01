@@ -22,7 +22,11 @@
 #define DEFINES_H
 
 using Index = int;
+using Value = int;
+
+const Index Pitch_size = 9;
 
 enum class State { free, cross, circle };
+enum class Player { user, ai };
 
 #endif // DEFINES_H
