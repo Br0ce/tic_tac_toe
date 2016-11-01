@@ -25,15 +25,18 @@
 #define PITCH_H
 
 #include <string>
+#include <stdexcept>
 
 
 class Pitch
 {
 public:
 
-  Pitch();
+  Pitch(const char* c = "---------");
 
 private:
+
+  bool is_pitch(const std::string& s) const;
 
   std::string state_;
 };

@@ -23,6 +23,21 @@
 
 #include "../hdr/pitch.h"
 
-Pitch::Pitch() :
-  state_("---------")
-{}
+Pitch::Pitch(const char* c) :
+  state_(c)
+{
+  if(!is_pitch(state_))
+    throw std::runtime_error("ERROR: pitch incorrect");
+}
+
+bool Pitch::is_pitch(const std::string& s) const
+{
+  if(s.size() != 9)
+    return false;
+
+  if(s.find_first_not_of("xo-") != std::string::npos)
+    return false;
+
+  return true;
+}
+
