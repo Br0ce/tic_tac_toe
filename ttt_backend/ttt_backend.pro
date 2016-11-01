@@ -14,12 +14,14 @@ CONFIG += console
 CONFIG += app_bundle
 
 INCLUDEPATH += ../hdr/
+INCLUDEPATH += ../../hdr/
 
 DESTDIR=bin #Target file directory
 OBJECTS_DIR=gen_bin #Intermediate object files directory
 MOC_DIR=gen_bin #Intermediate moc files directory
 
 # Input
-HEADERS += 
+HEADERS += hdr/server.h
 
 SOURCES += src/main.cpp \
+           src/server.cpp
