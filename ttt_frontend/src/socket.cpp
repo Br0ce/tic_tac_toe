@@ -28,8 +28,8 @@ Socket::Socket(QObject* parent) :
 {
   connect(socket_, SIGNAL(connected()),
           this, SLOT(socket_connected()));
-  connect(socket_, SIGNAL(socket_disconnected()),
-          this, SLOT(disconnected()));
+  connect(socket_, SIGNAL(disconnected()),
+          this, SLOT(socket_disconnected()));
   connect(socket_, SIGNAL(readyRead()),
           this, SLOT(reading()));
 
