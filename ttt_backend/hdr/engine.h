@@ -44,6 +44,8 @@ public:
   explicit Engine(QObject* parent = Q_NULLPTR);
 
   Action compute_next_move(const Player& p);
+  Action compute_next_ai_move();
+  Action compute_next_user_move();
   Index best_move();
   std::vector<Index> actions();
   Value get_value(const Player& p) const;

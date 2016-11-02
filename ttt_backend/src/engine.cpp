@@ -48,7 +48,7 @@ void Engine::incoming_inquiry(QByteArray a)
   }
 }
 
-Action Engine::compute_next_move(const Player& p)
+Action Engine::compute_next_ai_move()
 {
   if(pitch_.is_win(Player::ai))
     return Action(0, get_value(Player::ai));
@@ -59,44 +59,50 @@ Action Engine::compute_next_move(const Player& p)
   if(pitch_.is_draw())
     return Action(0, 0);
 
-  Action a(0, 0);
-
-  std::vector<Action> actions;
-//   for(const auto& id : actions())
-  for(int id = 0; id < 9; ++id)
+  Action a(0, -1000);
+  for(Index id = 0; id < Pitch_size; ++id)
   {
     if(pitch_.is_free(id))
     {
-      pitch_.move(id, p);
-      Action tmp;
-      if(p == Player::user)
-      {
-        tmp = (compute_next_move(Player::ai));
-        tmp.set_index(id);
-        a = std::min(a, tmp);
-      }
-      else
-      {
-        tmp = (compute_next_move(Player::user));
-        tmp.set_index(id);
-        a = std::max(a, tmp);
-      }
-
-      actions.push_back(tmp);
+      pitch_.move(id, Player::ai);
+      Action tmp(compute_next_user_move());
+      tmp.set_index(id);
+      a = std::max(a, tmp);
       pitch_.un_move(id);
     }
   }
+  return a;
+}
 
-  if(p == Player::ai)
-    a = *(std::max_element(actions.cbegin(), actions.cend()));
-  else
-    a = *(std::min_element(actions.cbegin(), actions.cend()));
+Action Engine::compute_next_user_move()
+{
+  if(pitch_.is_win(Player::user))
+    return Action(0, get_value(Player::user));
+
+  if(pitch_.is_win(Player::ai))
+    return Action(0, get_value(Player::ai));
+
+  if(pitch_.is_draw())
+    return Action(0, 0);
+
+  Action a(0, 1000);
+  for(Index id = 0; id < Pitch_size; ++id)
+  {
+    if(pitch_.is_free(id))
+    {
+      pitch_.move(id, Player::user);
+      Action tmp(compute_next_ai_move());
+      tmp.set_index(id);
+      a = std::min(a, tmp);
+      pitch_.un_move(id);
+    }
+  }
   return a;
 }
 
 Index Engine::best_move()
 {
-  return compute_next_move(Player::ai).get_index();
+  return compute_next_ai_move().get_index();
 }
 
 std::vector<Index> Engine::actions()
