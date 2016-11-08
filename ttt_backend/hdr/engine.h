@@ -63,7 +63,11 @@ private:
   void info(const char* c)
   { std::cout << c << "\n"; }
 
+  void reset_cnt()
+  { cnt_ = 0; }
+
   Pitch pitch_;
+  std::size_t cnt_;
 
 };
 

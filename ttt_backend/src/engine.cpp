@@ -25,7 +25,8 @@
 
 Engine::Engine(QObject* parent) :
   QObject(parent),
-  pitch_()
+  pitch_(),
+  cnt_(0)
 {
   info("Engine started");
 }
@@ -50,6 +51,7 @@ void Engine::incoming_inquiry(QByteArray a)
 
 Action Engine::compute_next_ai_move()
 {
+  cnt_++;
   if(pitch_.is_win(Player::ai))
     return Action(0, get_value(Player::ai));
 
@@ -76,6 +78,7 @@ Action Engine::compute_next_ai_move()
 
 Action Engine::compute_next_user_move()
 {
+  cnt_++;
   if(pitch_.is_win(Player::user))
     return Action(0, get_value(Player::user));
 
@@ -102,7 +105,11 @@ Action Engine::compute_next_user_move()
 
 Index Engine::best_move()
 {
-  return compute_next_ai_move().get_index();
+  reset_cnt();
+  auto id = compute_next_ai_move().get_index();
+  info("evaluated: ");
+  std::cout << cnt_ << "\n";
+  return id;
 }
 
 std::vector<Index> Engine::actions()
