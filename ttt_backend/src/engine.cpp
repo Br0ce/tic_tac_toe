@@ -26,8 +26,11 @@
 Engine::Engine(QObject* parent) :
   QObject(parent),
   pitch_(),
-  cnt_(0)
+  cnt_(0),
+  actions_(9),
+  dre_()
 {
+  std::iota(actions_.begin(), actions_.end(), 0);
   info("Engine started");
 }
 
@@ -112,13 +115,10 @@ Index Engine::best_move()
   return id;
 }
 
-std::vector<Index> Engine::actions()
+void Engine::shuffle_actions()
 {
-  std::vector<Index> tmp(9);
-  for(Index i = 0; i < Pitch_size; ++i)
-    tmp.at(i) = i;
-
-  return tmp;
+  dre_.seed(rd_());
+  std::shuffle(actions_.begin(), actions_.end(), dre_);
 }
 
 Value Engine::get_value(const Player& p) const

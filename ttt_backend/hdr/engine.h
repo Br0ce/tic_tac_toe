@@ -25,6 +25,8 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <chrono>
 
 #include <QObject>
 #include <QDebug>
@@ -47,7 +49,6 @@ public:
   Action compute_next_ai_move();
   Action compute_next_user_move();
   Index best_move();
-  std::vector<Index> actions();
   Value get_value(const Player& p) const;
 
 signals:
@@ -66,8 +67,13 @@ private:
   void reset_cnt()
   { cnt_ = 0; }
 
+  void shuffle_actions();
+
   Pitch pitch_;
   std::size_t cnt_;
+  std::vector<Index> actions_;
+  std::default_random_engine dre_;
+  std::random_device rd_;
 
 };
 
