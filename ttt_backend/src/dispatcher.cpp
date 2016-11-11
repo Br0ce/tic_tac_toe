@@ -1,6 +1,6 @@
 /** @file dispacher.h
  *
- * Copyright (C) 2016  Niklas Beck, beck@informatik.uni-bonn.de
+ * Copyright (C) 2016 @author Niklas Beck, beck@informatik.uni-bonn.de
  *
  *
  * This program is free software; you can redistribute it and/or modify
