@@ -21,12 +21,15 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#include <inttypes.h>
+
 using Index = int;
-using Value = int;
+using Value = int64_t;
 
 const Index Pitch_size = 9;
 
 enum class State { free, cross, circle };
 enum class Player { user, ai };
+enum class Algo { min_max, alpha_beta };
 
 #endif // DEFINES_H
