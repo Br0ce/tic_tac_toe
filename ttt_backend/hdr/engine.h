@@ -27,12 +27,14 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
+#include <memory>
 
 #include <QObject>
 #include <QDebug>
 
 #include "../hdr/pitch.h"
 #include "../hdr/action.h"
+#include "../hdr/move_algorithm.h"
 #include "defines.h"
 
 
@@ -45,7 +47,6 @@ public:
 
   explicit Engine(QObject* parent = Q_NULLPTR);
 
-  Action compute_next_move(const Player& p);
   Action compute_next_ai_move();
   Action compute_next_user_move();
   Index best_move();
@@ -68,8 +69,10 @@ private:
   { cnt_ = 0; }
 
   void shuffle_actions();
+  void set_move_algo(const Algo& a);
 
   Pitch pitch_;
+  std::unique_ptr<Move_algorithm> move_algo_;
   std::size_t cnt_;
   std::vector<Index> actions_;
   std::default_random_engine dre_;

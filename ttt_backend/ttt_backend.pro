@@ -25,11 +25,17 @@ HEADERS += hdr/server.h \
            hdr/engine.h \
            hdr/pitch.h \
            hdr/dispatcher.h \
-           hdr/action.h
+           hdr/action.h \
+           hdr/move_algorithm.h \
+           hdr/min_max.h \
+           hdr/alpha_beta.h
 
 SOURCES += src/main.cpp \
            src/server.cpp \
            src/engine.cpp \
            src/pitch.cpp \
            src/dispatcher.cpp \
-           src/action.cpp
+           src/action.cpp \
+           src/move_algorithm.cpp \
+           src/min_max.cpp \
+           src/alpha_beta.cpp

@@ -26,9 +26,7 @@
 Engine::Engine(QObject* parent) :
   QObject(parent),
   pitch_(),
-  cnt_(0),
-  actions_(9),
-  dre_()
+  move_algo_(Move_algorithm::make_algo(Algo::alpha_beta))
 {
   std::iota(actions_.begin(), actions_.end(), 0);
   info("Engine started");
@@ -43,7 +41,8 @@ void Engine::incoming_inquiry(QByteArray a)
     pitch_.set_pitch(a.constData());
     info("inquiry correct: ");
     info(a.constData());
-    const auto a = QByteArray::number(best_move());
+    const auto a = QByteArray::number(move_algo_->best_move(pitch_));
+
     emit next_move_signal(a);
   }
   catch(std::exception& e)
@@ -52,79 +51,7 @@ void Engine::incoming_inquiry(QByteArray a)
   }
 }
 
-Action Engine::compute_next_ai_move()
+void Engine::set_move_algo(const Algo& a)
 {
-  cnt_++;
-  if(pitch_.is_win(Player::ai))
-    return Action(0, get_value(Player::ai));
-
-  if(pitch_.is_win(Player::user))
-    return Action(0, get_value(Player::user));
-
-  if(pitch_.is_draw())
-    return Action(0, 0);
-
-  Action a(0, -1000);
-  for(Index id = 0; id < Pitch_size; ++id)
-  {
-    if(pitch_.is_free(id))
-    {
-      pitch_.move(id, Player::ai);
-      Action tmp(compute_next_user_move());
-      tmp.set_index(id);
-      a = std::max(a, tmp);
-      pitch_.un_move(id);
-    }
-  }
-  return a;
-}
-
-Action Engine::compute_next_user_move()
-{
-  cnt_++;
-  if(pitch_.is_win(Player::user))
-    return Action(0, get_value(Player::user));
-
-  if(pitch_.is_win(Player::ai))
-    return Action(0, get_value(Player::ai));
-
-  if(pitch_.is_draw())
-    return Action(0, 0);
-
-  Action a(0, 1000);
-  for(Index id = 0; id < Pitch_size; ++id)
-  {
-    if(pitch_.is_free(id))
-    {
-      pitch_.move(id, Player::user);
-      Action tmp(compute_next_ai_move());
-      tmp.set_index(id);
-      a = std::min(a, tmp);
-      pitch_.un_move(id);
-    }
-  }
-  return a;
-}
-
-Index Engine::best_move()
-{
-  reset_cnt();
-  auto id = compute_next_ai_move().get_index();
-  info("evaluated: ");
-  std::cout << cnt_ << "\n";
-  return id;
-}
-
-void Engine::shuffle_actions()
-{
-  dre_.seed(rd_());
-  std::shuffle(actions_.begin(), actions_.end(), dre_);
-}
-
-Value Engine::get_value(const Player& p) const
-{
-  if(p == Player::ai)
-    return 10 - pitch_.get_depth();
-  else
-    return -(10 - pitch_.get_depth());
+  move_algo_ = Move_algorithm::make_algo(a);
 }
