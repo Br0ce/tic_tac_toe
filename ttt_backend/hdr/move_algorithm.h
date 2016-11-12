@@ -49,7 +49,7 @@ public:
   { cnt_++; }
 
   void cnt_out()
-  { std::cout << cnt_ << "\n"; }
+  { std::cout << "evaluated " << cnt_ << " moves\n"; }
 
 private:
 
