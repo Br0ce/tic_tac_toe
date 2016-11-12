@@ -40,7 +40,7 @@ Server::Server(QObject* parent) :
 
 void Server::connection()
 {
-  info("\nconnected\n");
+  info("\n-- connected --\n");
 
   session_ = server_->nextPendingConnection();
 
@@ -51,13 +51,22 @@ void Server::connection()
     emit to_engine_signal(session_->readAll());
 
     info("\nwaiting for next inquiry\n");
+
+    connect(session_, SIGNAL(disconnected()),
+            this, SLOT(session_disconnected()));
   }
 }
 
 void Server::next_move(QByteArray a)
 {
-  info("sending next move");
+  info("\nsending next move");
 
   session_->write(a);
   session_->flush();
+}
+
+void Server::session_disconnected()
+{
+  info("-- disconnected --");
+  info("\nwaiting for connection ...");
 }

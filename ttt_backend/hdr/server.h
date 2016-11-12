@@ -46,6 +46,7 @@ signals:
 public slots:
 
   void connection();
+  void session_disconnected();
   void next_move(QByteArray a);
 
 private:
