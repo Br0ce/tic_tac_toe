@@ -24,9 +24,9 @@
 #define ENGINE_H
 
 #include <iostream>
+#include <cstring>
 #include <vector>
 #include <algorithm>
-#include <chrono>
 #include <memory>
 
 #include <QObject>
@@ -51,6 +51,7 @@ public:
   Action compute_next_user_move();
   Index best_move();
   Value get_value(const Player& p) const;
+  void set_move_algo(const char* c);
 
 signals:
 
@@ -69,7 +70,6 @@ private:
   { cnt_ = 0; }
 
   void shuffle_actions();
-  void set_move_algo(const Algo& a);
 
   Pitch pitch_;
   std::unique_ptr<Move_algorithm> move_algo_;

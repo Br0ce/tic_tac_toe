@@ -51,7 +51,20 @@ void Engine::incoming_inquiry(QByteArray a)
   }
 }
 
-void Engine::set_move_algo(const Algo& a)
+void Engine::set_move_algo(const char* c)
 {
-  move_algo_ = Move_algorithm::make_algo(a);
+  if(std::strcmp(c, "-mm") == 0)
+  {
+    move_algo_ = Move_algorithm::make_algo(Algo::min_max);
+    info("Search-Algorithm: Min-Max");
+  }
+  else if(std::strcmp(c, "-ab") == 0)
+  {
+    info("Search-Algorithm: Alpha-Beta");
+  }
+  else
+  {
+    info("ERROR: cannot parse argument - use default");
+    info("Search-Algorithm: Alpha-Beta");
+  }
 }
