@@ -36,7 +36,8 @@ class Dispatcher : public QObject
 
 public:
 
-  explicit Dispatcher(QObject* parent = Q_NULLPTR);
+  explicit Dispatcher(const char* arg, QObject* parent = Q_NULLPTR);
+
 
 private:
 

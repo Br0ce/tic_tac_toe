@@ -21,12 +21,17 @@
 
 #include "../hdr/dispatcher.h"
 
-Dispatcher::Dispatcher(QObject* parent) :
+Dispatcher::Dispatcher(const char* arg, QObject* parent) :
   QObject(parent),
   server_(new Server(this)),
   engine_(new Engine(this))
 {
   info("Dispatcher started");
+
+  if(arg == nullptr)
+    info("Search-Algorithm: Alpha-Beta");
+  else
+    engine_->set_move_algo(arg);
 
   connect(server_, SIGNAL(to_engine_signal(QByteArray)),
           engine_, SLOT(incoming_inquiry(QByteArray)));
