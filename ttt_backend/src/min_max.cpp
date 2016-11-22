@@ -43,7 +43,7 @@ Action Min_max::compute_next_ai_move(Pitch& p)
   if(p.is_draw())
     return Action(0, 0);
 
-  Action a(0, INT64_MIN);
+  Action a(0, Min_value);
   for(Index id = 0; id < Pitch_size; ++id)
   {
     if(p.is_free(id))
@@ -70,7 +70,7 @@ Action Min_max::compute_next_user_move(Pitch& p)
   if(p.is_draw())
     return Action(0, 0);
 
-  Action a(0, INT64_MAX);
+  Action a(0, Max_value);
   for(Index id = 0; id < Pitch_size; ++id)
   {
     if(p.is_free(id))

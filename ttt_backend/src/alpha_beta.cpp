@@ -32,7 +32,7 @@ Alpha_beta::Alpha_beta() :
 Index Alpha_beta::best_move(Pitch& p)
 {
   reset_cnt();
-  auto id = compute_next_ai_move(p, INT64_MIN, INT64_MAX).get_index();
+  auto id = compute_next_ai_move(p, Min_value, Max_value).get_index();
   cnt_out();
 
   return id;
@@ -51,7 +51,7 @@ Action Alpha_beta::compute_next_ai_move(Pitch& p, int64_t alpha, int64_t beta)
   if(p.is_draw())
     return Action(0, 0);
 
-  Action a(0, INT64_MIN);
+  Action a(0, Min_value);
 
   for(const auto& id : get_actions())
   {
@@ -88,7 +88,7 @@ Action Alpha_beta::compute_next_user_move(Pitch& p, int64_t alpha, int64_t beta)
   if(p.is_draw())
     return Action(0, 0);
 
-  Action a(0, INT64_MAX);
+  Action a(0, Max_value);
 
   for(const auto& id : get_actions())
   {
