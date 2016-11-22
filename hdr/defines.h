@@ -26,7 +26,9 @@
 using Index = int;
 using Value = int64_t;
 
-const Index Pitch_size = 9;
+constexpr Value Max_value = INT64_MAX;
+constexpr Value Min_value = INT64_MIN;
+constexpr Index Pitch_size = 9;
 
 enum class State { free, cross, circle };
 enum class Player { user, ai };
