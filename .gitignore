@@ -65,9 +65,12 @@ composer.lock
 config.php
 Guardfile
 build
+lib
 gen_bin
 tmp
 devel
 *.orig
 *~
 Makefile
+cmake-build-debug/
+bin
