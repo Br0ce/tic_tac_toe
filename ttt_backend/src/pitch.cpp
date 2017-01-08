@@ -35,7 +35,7 @@ Pitch::Pitch(const char* c) :
 
 bool Pitch::is_pitch(const std::string& s) const
 {
-  if(s.size() != 9)
+  if(s.size() != Pitch_size)
     return false;
 
   if(s.find_first_not_of("xo-") != std::string::npos)
