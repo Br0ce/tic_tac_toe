@@ -18,7 +18,7 @@
  *
  */
 
-#include "../ttt_frontend/hdr/session_handler.h"
+#include "../hdr/session_handler.h"
 
 Session_handler::Session_handler(Front_win* gui, QObject* parent) :
   QObject(parent),
