@@ -27,6 +27,7 @@
 #include "../hdr/pitch.h"
 #include "../hdr/action.h"
 #include "defines.h"
+#include "../../ttt_lib/hdr/helper.h"
 
 
 class Min_max : public Move_algorithm
