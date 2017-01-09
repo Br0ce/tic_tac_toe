@@ -27,6 +27,7 @@
 
 #include "../hdr/server.h"
 #include "../hdr/engine.h"
+#include "../../ttt_lib/hdr/helper.h"
 
 
 class Dispatcher : public QObject
@@ -40,9 +41,6 @@ public:
 
 
 private:
-
-  void info(const char* c) const
-  { std::cout << c << "\n"; }
 
   Server* server_;
   Engine* engine_;

@@ -26,10 +26,10 @@ Dispatcher::Dispatcher(const char* arg, QObject* parent) :
   server_(new Server(this)),
   engine_(new Engine(this))
 {
-  info("Dispatcher started");
+  hlp::info("Dispatcher started");
 
   if(arg == nullptr)
-    info("Search-Algorithm: Alpha-Beta");
+    hlp::info("Search-Algorithm: Alpha-Beta");
   else
     engine_->set_move_algo(arg);
 
