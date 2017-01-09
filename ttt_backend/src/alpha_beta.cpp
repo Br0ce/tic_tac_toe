@@ -42,13 +42,13 @@ Action Alpha_beta::compute_next_ai_move(Pitch& p, int64_t alpha, int64_t beta)
 {
   inc_cnt();
 
-  if(p.is_win(Player::ai))
+  if(hlp::is_win(Player::ai, p.get_state()))
     return Action(0, get_value(Player::ai, p));
 
-  if(p.is_win(Player::user))
+  if(hlp::is_win(Player::user, p.get_state()))
     return Action(0, get_value(Player::user, p));
 
-  if(p.is_draw())
+  if(hlp::is_draw(p.get_state()))
     return Action(0, 0);
 
   Action a(0, Min_value);
@@ -79,13 +79,13 @@ Action Alpha_beta::compute_next_user_move(Pitch& p, int64_t alpha, int64_t beta)
 {
   inc_cnt();
 
-  if(p.is_win(Player::user))
+  if(hlp::is_win(Player::user, p.get_state()))
     return Action(0, get_value(Player::user, p));
 
-  if(p.is_win(Player::ai))
+  if(hlp::is_win(Player::ai, p.get_state()))
     return Action(0, get_value(Player::ai, p));
 
-  if(p.is_draw())
+  if(hlp::is_draw(p.get_state()))
     return Action(0, 0);
 
   Action a(0, Max_value);

@@ -27,6 +27,7 @@
 #include "../hdr/move_algorithm.h"
 #include "../hdr/action.h"
 #include "defines.h"
+#include "../../ttt_lib/hdr/helper.h"
 
 class Alpha_beta : public Move_algorithm
 {
