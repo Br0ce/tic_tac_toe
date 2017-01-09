@@ -31,26 +31,26 @@ Server::Server(QObject* parent) :
           this, SLOT(connection()));
 
   if(!server_->listen(QHostAddress::Any, 12345))
-    info("ERROR: Server cannot start");
+    hlp::info("ERROR: Server cannot start");
   else
-    info("Server started");
+    hlp::info("Server started");
 
-  info("\nwaiting for connection ...\n");
+  hlp::info("\nwaiting for connection ...\n");
 }
 
 void Server::connection()
 {
-  info("\n-- connected --\n");
+  hlp::info("\n-- connected --\n");
 
   session_ = server_->nextPendingConnection();
 
   while(session_->waitForReadyRead())
   {
-    info("recieved inquiry");
+    hlp::info("recieved inquiry");
 
     emit to_engine_signal(session_->readAll());
 
-    info("\nwaiting for next inquiry\n");
+    hlp::info("\nwaiting for next inquiry\n");
 
     connect(session_, SIGNAL(disconnected()),
             this, SLOT(session_disconnected()));
@@ -59,7 +59,7 @@ void Server::connection()
 
 void Server::next_move(QByteArray a)
 {
-  info("\nsending next move");
+  hlp::info("\nsending next move");
 
   session_->write(a);
   session_->flush();
@@ -67,6 +67,6 @@ void Server::next_move(QByteArray a)
 
 void Server::session_disconnected()
 {
-  info("-- disconnected --");
-  info("\nwaiting for connection ...");
+  hlp::info("-- disconnected --");
+  hlp::info("\nwaiting for connection ...");
 }

@@ -29,6 +29,8 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
+#include "../../ttt_lib/hdr/helper.h"
+
 
 class Server : public QObject
 {
@@ -50,9 +52,6 @@ public slots:
   void next_move(QByteArray a);
 
 private:
-
-  void info(const char* c)
-  { std::cout << c << "\n"; }
 
   QTcpServer* server_;
   QTcpSocket* session_;
