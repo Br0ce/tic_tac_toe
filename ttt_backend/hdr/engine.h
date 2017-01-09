@@ -36,6 +36,7 @@
 #include "../hdr/action.h"
 #include "../hdr/move_algorithm.h"
 #include "defines.h"
+#include "../../ttt_lib/hdr/helper.h"
 
 
 class Engine : public QObject
@@ -62,9 +63,6 @@ public slots:
   void incoming_inquiry(QByteArray a);
 
 private:
-
-  void info(const char* c)
-  { std::cout << c << "\n"; }
 
   void reset_cnt()
   { cnt_ = 0; }

@@ -29,25 +29,25 @@ Engine::Engine(QObject* parent) :
   move_algo_(Move_algorithm::make_algo(Algo::alpha_beta))
 {
   std::iota(actions_.begin(), actions_.end(), 0);
-  info("Engine started");
+  hlp::info("Engine started");
 }
 
 void Engine::incoming_inquiry(QByteArray a)
 {
-  info("processing ...");
+  hlp::info("processing ...");
 
   try
   {
     pitch_.set_pitch(a.constData());
-    info("inquiry correct: ");
-    info(a.constData());
+    hlp::info("inquiry correct: ");
+    hlp::info(a.constData());
     const auto a = QByteArray::number(move_algo_->best_move(pitch_));
 
     emit next_move_signal(a);
   }
   catch(std::exception& e)
   {
-    info("ERROR: inquiry incorrect");
+    hlp::info("ERROR: inquiry incorrect");
   }
 }
 
@@ -56,15 +56,15 @@ void Engine::set_move_algo(const char* c)
   if(std::strcmp(c, "-mm") == 0)
   {
     move_algo_ = Move_algorithm::make_algo(Algo::min_max);
-    info("Search-Algorithm: Min-Max");
+    hlp::info("Search-Algorithm: Min-Max");
   }
   else if(std::strcmp(c, "-ab") == 0)
   {
-    info("Search-Algorithm: Alpha-Beta");
+    hlp::info("Search-Algorithm: Alpha-Beta");
   }
   else
   {
-    info("ERROR: cannot parse argument - use default");
-    info("Search-Algorithm: Alpha-Beta");
+    hlp::info("ERROR: cannot parse argument - use default");
+    hlp::info("Search-Algorithm: Alpha-Beta");
   }
 }
