@@ -33,40 +33,40 @@ Socket::Socket(QObject* parent) :
   connect(socket_, SIGNAL(readyRead()),
           this, SLOT(reading()));
 
-  info("connecting ...");
+  hlp::info("connecting ...");
 
   socket_->connectToHost("127.0.0.1", 12345);
   if(!socket_->waitForConnected(3000))
   {
-    info("ERROR: ");
+    hlp::info("ERROR: ");
     std::cout << socket_->errorString().toStdString() << "\n";
   }
 }
 
 void Socket::socket_connected()
 {
-  info("connected");
+  hlp::info("connected");
 }
 
 void Socket::socket_disconnected()
 {
-  info("disconnected");
+  hlp::info("disconnected");
 }
 
 void Socket::reading()
 {
-  info("reading ...");
+  hlp::info("reading ...");
 
   //TODO check message
   auto tmp = socket_->readAll().toInt();
   emit ai_move_signal(tmp);
 
-  info("received ai move");
+  hlp::info("received ai move");
 }
 
 void Socket::user_move(const QByteArray a)
 {
-  info("sending inquiry");
+  hlp::info("sending inquiry");
 
   socket_->write(a);
   socket_->flush();

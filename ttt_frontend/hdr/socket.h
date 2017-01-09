@@ -29,6 +29,8 @@
 #include <QTcpSocket>
 #include <QAbstractSocket>
 
+#include "../../ttt_lib/hdr/helper.h"
+
 
 class Socket : public QObject
 {
@@ -51,9 +53,6 @@ public slots:
   void user_move(const QByteArray a);
 
 private:
-
-  void info(const char* i)
-  { std::cout << i << "\n"; }
 
   QTcpSocket* socket_;
 };
