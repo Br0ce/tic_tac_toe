@@ -25,6 +25,7 @@
 
 #include "../hdr/front_win.h"
 #include "../hdr/socket.h"
+#include "../../ttt_lib/hdr/helper.h"
 
 
 class Session_handler : public QObject
@@ -37,10 +38,23 @@ public:
   explicit Session_handler(Front_win* gui,
                            QObject* parent = Q_NULLPTR);
 
+signals:
+
+  void user_move_signal_good(const QByteArray);
+  void ai_move_signal_good(int);
+
+private slots:
+
+  void check_user_move(const QByteArray b);
+  void check_ai_move(int id);
+
 private:
+
+  void display_result(const char* c) const;
 
   Front_win* gui_;
   Socket* socket_;
+
 };
 
 #endif // SESSION_HANDLER_H
