@@ -87,5 +87,12 @@ QByteArray Front_win::get_pitch_status() const
 
 void Front_win::ai_move(int id)
 {
-  fields_.at(id)->set_circle();
+  if(fields_.at(id)->get_state() == State::free)
+    fields_.at(id)->set_circle();
+}
+
+void Front_win::clear_pitch()
+{
+  for(auto& f : fields_)
+    f->set_free();
 }

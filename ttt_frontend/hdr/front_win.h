@@ -39,6 +39,9 @@ public:
 
   explicit Front_win(QWidget* parent = Q_NULLPTR);
 
+  void clear_pitch();
+  QByteArray get_pitch_status() const;
+
 signals:
 
   void user_move_signal(const QByteArray a);
@@ -52,11 +55,9 @@ private:
 
   void init();
   void make_pitch();
-  QByteArray get_pitch_status() const;
 
   QGridLayout* grid_;
   std::vector<Field*> fields_;
-
 };
 
 #endif // FRONT_WIN_H
