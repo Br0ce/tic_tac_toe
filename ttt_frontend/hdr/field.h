@@ -47,6 +47,7 @@ public:
 
   void set_cross();
   void set_circle();
+  void set_free();
 
 signals:
 

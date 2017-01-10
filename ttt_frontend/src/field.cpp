@@ -70,3 +70,10 @@ void Field::set_circle()
   setText("O");
   setAlignment(Qt::AlignCenter);
 }
+
+void Field::set_free()
+{
+  set_state(State::free);
+  setText("");
+  setAlignment(Qt::AlignCenter);
+}
