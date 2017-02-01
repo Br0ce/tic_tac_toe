@@ -39,16 +39,14 @@ public:
 
   void set_pitch(const char* c);
   bool is_free(Index id) const;
-
   int get_depth() const;
+  void move(Index id, const Player& p);
 
   const std::string get_state() const
   { return state_; }
 
   char at(Index id) const
   { return state_.at(id); }
-
-  void move(Index id, const Player& p);
 
   void un_move(Index id)
   { state_.at(id) = '-'; }
