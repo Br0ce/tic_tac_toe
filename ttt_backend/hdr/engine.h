@@ -50,7 +50,6 @@ public:
 
   Action compute_next_ai_move();
   Action compute_next_user_move();
-  Index best_move();
   Value get_value(const Player& p) const;
   void set_move_algo(const char* c);
 
