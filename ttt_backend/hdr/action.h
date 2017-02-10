@@ -41,9 +41,6 @@ public:
   void set_index(Index id)
   { index_ = id; }
 
-  void set_value(Value v)
-  { value_ = v; }
-
   Index get_index() const
   { return index_; }
 
