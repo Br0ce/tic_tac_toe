@@ -36,7 +36,7 @@ public:
   Alpha_beta();
   ~Alpha_beta() = default;
 
-  Index best_move(Pitch& p) override;
+  Index compute_move(Pitch& p) override;
 
   Action compute_next_ai_move(Pitch& p, int64_t alpha, int64_t beta);
   Action compute_next_user_move(Pitch& p, int64_t alpha, int64_t beta);
