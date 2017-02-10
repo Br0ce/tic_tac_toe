@@ -41,9 +41,9 @@ void Engine::incoming_inquiry(QByteArray a)
     pitch_.set_pitch(a.constData());
     hlp::info("inquiry correct: ");
     hlp::info(a.constData());
-    const auto a = QByteArray::number(move_algo_->best_move(pitch_));
+    const auto id = QByteArray::number(move_algo_->best_move(pitch_));
 
-    emit next_move_signal(a);
+    emit next_move_signal(id);
   }
   catch(std::exception& e)
   {
