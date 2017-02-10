@@ -6,7 +6,6 @@ project(ttt_backend)
 # Find the QtWidgets library
 find_package(Qt5Widgets)
 find_package(Qt5Network)
-find_package(OpenCV REQUIRED )
 
 set(CMAKE_CXX_STANDARD 11)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
@@ -28,6 +27,7 @@ set(HEADER_FILES
         hdr/move_algorithm.h
         hdr/pitch.h
         hdr/server.h
+        hdr/analyser.h
         )
 
 set(SOURCE_FILES
@@ -40,6 +40,7 @@ set(SOURCE_FILES
         src/move_algorithm.cpp
         src/pitch.cpp
         src/server.cpp
+        src/analyser.cpp
         )
 
 
@@ -52,5 +53,4 @@ add_executable(ttt_backend ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(ttt_backend Qt5::Widgets)
 target_link_libraries(ttt_backend Qt5::Network)
 target_link_libraries(ttt_backend ttt_lib)
-target_link_libraries(ttt_backend ${OpenCV_LIBS} )
 
