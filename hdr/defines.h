@@ -23,7 +23,7 @@
 
 #include <inttypes.h>
 
-using Index = int;
+using Index = uint32_t;
 using Value = int64_t;
 
 constexpr Value Max_value = INT64_MAX;
