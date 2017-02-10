@@ -29,14 +29,8 @@ Alpha_beta::Alpha_beta() :
   std::iota(actions_.begin(), actions_.end(), 0);
 }
 
-Index Alpha_beta::best_move(Pitch& p)
-{
-  reset_cnt();
-  auto id = compute_next_ai_move(p, Min_value, Max_value).get_index();
-  cnt_out();
-
-  return id;
-}
+Index Alpha_beta::compute_move(Pitch& p)
+{ return compute_next_ai_move(p, Min_value, Max_value).get_index(); }
 
 Action Alpha_beta::compute_next_ai_move(Pitch& p, int64_t alpha, int64_t beta)
 {

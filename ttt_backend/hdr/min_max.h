@@ -37,7 +37,7 @@ public:
   Min_max() = default;
   ~Min_max() = default;
 
-  Index best_move(Pitch& p) override;
+  Index compute_move(Pitch& p) override;
 
   Action compute_next_ai_move(Pitch& p);
   Action compute_next_user_move(Pitch& p);

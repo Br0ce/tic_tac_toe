@@ -22,14 +22,8 @@
 #include "../hdr/min_max.h"
 
 
-Index Min_max::best_move(Pitch& p)
-{
-  reset_cnt();
-  auto id = compute_next_ai_move(p).get_index();
-  cnt_out();
-  return id;
-}
-
+Index Min_max::compute_move(Pitch& p)
+{ return compute_next_ai_move(p).get_index(); }
 
 Action Min_max::compute_next_ai_move(Pitch& p)
 {

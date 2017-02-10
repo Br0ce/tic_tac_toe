@@ -28,16 +28,18 @@
 
 #include "defines.h"
 #include "../hdr/pitch.h"
+#include "../hdr/analyser.h"
 
 
 class Move_algorithm
 {
 public:
 
-  Move_algorithm() = default;
+  Move_algorithm() : cnt_(0) {}
   virtual ~Move_algorithm() = default;
 
-  virtual Index best_move(Pitch& p) = 0;
+  Index best_move(Pitch& p);
+  virtual Index compute_move(Pitch& p) = 0;
   Value get_value(const Player& player, const Pitch& pitch) const;
 
   static std::unique_ptr<Move_algorithm> make_algo(const Algo& a);
@@ -48,12 +50,12 @@ public:
   void inc_cnt()
   { cnt_++; }
 
-  void cnt_out()
-  { std::cout << "evaluated " << cnt_ << " moves\n"; }
+  const std::size_t* get_cnt_ptr() const
+  { return  &cnt_; }
 
 private:
 
-  int cnt_;
+  std::size_t cnt_;
 };
 
 #endif // MOVE_ALGORITHM_H

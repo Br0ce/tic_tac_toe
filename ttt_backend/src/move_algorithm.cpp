@@ -43,3 +43,12 @@ std::unique_ptr<Move_algorithm> Move_algorithm::make_algo(const Algo& a)
 
   return tmp;
 }
+
+Index Move_algorithm::best_move(Pitch &p)
+{
+  reset_cnt();
+  Analyser an(get_cnt_ptr());
+  an.start_clock();
+
+  return compute_move(p);
+}
