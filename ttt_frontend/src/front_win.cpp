@@ -39,7 +39,7 @@ void Front_win::init()
 
 void Front_win::make_pitch()
 {
-  Index id = 0;
+  auto id = 0;
   for(auto i = 0; i < 3; ++i)
   {
     for(auto j = 0; j < 3; ++j)
@@ -83,6 +83,12 @@ QByteArray Front_win::get_pitch_status() const
     a.append(c);
   }
   return a;
+}
+
+void Front_win::ai_move(int id)
+{
+  if(fields_.at(id)->get_state() == State::free)
+    fields_.at(id)->set_circle();
 }
 
 void Front_win::clear_pitch()
