@@ -61,7 +61,7 @@ bool Pitch::is_free(Index id) const
     return true;
 }
 
-int Pitch::get_depth() const
+uint16_t Pitch::get_depth() const
 {
   return Pitch_size - std::count(state_.cbegin(), state_.cend(), '-');
 }

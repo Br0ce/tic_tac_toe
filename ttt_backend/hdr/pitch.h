@@ -39,7 +39,7 @@ public:
 
   void set_pitch(const char* c);
   bool is_free(Index id) const;
-  int get_depth() const;
+  uint16_t get_depth() const;
   void move(Index id, const Player& p);
 
   const std::string get_state() const
