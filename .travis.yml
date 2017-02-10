@@ -1,0 +1,62 @@
+language: cpp
+
+sudo: required
+
+dist: trusty
+
+compiler:
+  - gcc
+  - clang
+
+os:
+  - linux
+  - osx
+
+env:
+  - CONFIG=RELEASE
+  - CONFIG=DEBUG
+
+before_install:
+
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+
+         sudo add-apt-repository ppa:beineri/opt-qt551-trusty -y
+      && sudo apt-get update -qq;
+
+    else
+
+         brew update;
+
+    fi
+
+install:
+
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+
+         sudo apt-get install qt55base qt55declarative qt55tools -y;
+
+    else
+
+         brew install qt5
+      && chmod -R 755 /usr/local/opt/qt5/*;
+
+    fi
+
+script:
+
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+
+      source /opt/qt55/bin/qt55-env.sh;
+
+    else
+
+         export LDFLAGS=-L/usr/local/opt/qt5/lib
+      && export CPPFLAGS=-I/usr/local/opt/qt5/include
+      && export PKG_CONFIG_PATH=/usr/local/opt/qt5/lib/pkgconfig
+      && export CMAKE_PREFIX_PATH=/usr/local/opt/qt5/;
+
+    fi
+
+  - mkdir build
+  - cd build
+  - cmake .. && make
